@@ -1,14 +1,15 @@
 package com.classes;
 
 import java.util.Date;
+import java.util.List;
 
 public class Aluguel {
     public Aluguel() {
     }
 
-    public Aluguel(Integer idAluguel, Date dthrAlguel, Date dthrDevolucao, Bicicleta bicicleta, Usuario usuario) {
+    public Aluguel(Integer idAluguel, Date dthrAluguel, Date dthrDevolucao, Bicicleta bicicleta, Usuario usuario) {
         this.idAluguel = idAluguel;
-        this.dthrAlguel = dthrAlguel;
+        this.dthrAluguel = dthrAluguel;
         this.dthrDevolucao = dthrDevolucao;
         this.bicicleta = bicicleta;
         this.usuario = usuario;
@@ -22,12 +23,12 @@ public class Aluguel {
         this.idAluguel = idAluguel;
     }
 
-    public Date getDthrAlguel() {
-        return dthrAlguel;
+    public Date getDthrAluguel() {
+        return dthrAluguel;
     }
 
-    public void setDthrAlguel(Date dthrAlguel) {
-        this.dthrAlguel = dthrAlguel;
+    public void setDthrAluguel(Date dthrAluguel) {
+        this.dthrAluguel = dthrAluguel;
     }
 
     public Date getDthrDevolucao() {
@@ -55,19 +56,32 @@ public class Aluguel {
     }
 
     private Integer idAluguel;
-    private Date dthrAlguel;
+    private Date dthrAluguel;
     private Date dthrDevolucao;
     private Bicicleta bicicleta;
     private Usuario usuario;
 
-
-    public static boolean scanQrCodeBike(String qrCode) {
-        //todo: não lembro oq esse cara deveria fazer
+    //parâmetro listaBicicleta temporário até desenvolvermos a conexão com o BD
+    public static boolean scanQrCodeBike(String qrCode, List<Bicicleta> listaBicicleta) {
+        for (Bicicleta bicicleta : listaBicicleta) {
+            if (bicicleta.getIdBicicleta().equals(qrCode)) {
+                return true;
+            }
+        }
+        //busca instancia no banco aonde tem id_bicicleta = qrCode
+        //retorna falso se nao encontrar
         return false;
     }
 
-    public static boolean scanQrCodeVaga(String qrCode) {
-        //todo: não lembro oq esse cara deveria fazer
+    //parâmetro listaVaga temporário até desenvolvermos a conexão com o BD
+    public static boolean scanQrCodeVaga(String qrCode, List<Vaga> listaVaga) {
+        for (Vaga vaga : listaVaga) {
+            if (vaga.getIdVaga().equals(qrCode)) {
+                return true;
+            }
+        }
+        //busca instancia no banco aonde tem id_vaga = qrCode
+        //retorna falso se nao encontrar
         return false;
     }
 

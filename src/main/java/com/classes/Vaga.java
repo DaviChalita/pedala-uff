@@ -39,10 +39,6 @@ public class Vaga {
     }
 
     public static void alteraDisponibilidadeVaga(Vaga vaga) {
-        if (vaga.isDisponibilidade()) {
-            vaga.setDisponibilidade(false);
-        } else {
-            vaga.setDisponibilidade(true);
-        }
+        vaga.setDisponibilidade(!vaga.isDisponibilidade());
     }
 }
